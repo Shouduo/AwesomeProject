@@ -1,18 +1,20 @@
 import React from 'react';
 import {ScrollView, StatusBar, View} from 'react-native';
 import WindowButtons from '../../components/WindowButtons';
-import Jumbotron from '../../components/Jumbotron';
-import ExtraService from '../../components/ExtraService';
+import YKMJumbotron from '../../components/YKMJumbotron';
+import YKMExtraService from '../../components/YKMExtraService';
 
-const YKMScreen = ({navigation}) => (
-  <View>
-    <StatusBar barStyle="light-content" />
-    <WindowButtons onClose={() => navigation.navigate('Index')} />
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Jumbotron />
-      <ExtraService />
-    </ScrollView>
-  </View>
-);
+const YKMScreen = ({navigation}) => {
+  return (
+    <View>
+      <StatusBar barStyle="light-content" />
+      <WindowButtons onClose={() => navigation.navigate('Index')} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <YKMJumbotron />
+        <YKMExtraService />
+      </ScrollView>
+    </View>
+  );
+};
 
 export default YKMScreen;

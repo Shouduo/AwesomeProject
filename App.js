@@ -1,57 +1,62 @@
 import React from 'react';
-import {ScrollView, StatusBar, View} from 'react-native';
-// import WindowButtons from './components/WindowButtons';
-// import Jumbotron from './components/Jumbotron';
-// import ExtraService from './components/ExtraService';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import IndexPage from './pages/IndexPage';
 import YKMScreen from './pages/YKMScreen';
 import CSMScreen from './pages/CSMScreen';
+import InfoPage from './pages/InfoPage';
+import {INITIAL_INFO} from './utils/public';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// const YKMPage = () => (
-//   <View>
-//     <StatusBar barStyle="light-content" />
-//     <WindowButtons />
-//     <ScrollView contentInsetAdjustmentBehavior="automatic">
-//       <Jumbotron />
-//       <ExtraService />
-//     </ScrollView>
-//   </View>
-// );
+export const Context = React.createContext({
+  info: {},
+  setInfo: () => {},
+});
 
 const Stack = createNativeStackNavigator();
 
-const TitleBar = () => {
-  return <></>;
-};
-
 const App = () => {
+  const [info, setInfo] = React.useState({});
+
+  const updateInfo = info => {
+    setInfo(info);
+    (async () => {
+      try {
+        AsyncStorage.setItem('INFO', JSON.stringify(info));
+      } catch (e) {
+        console.log('AsyncStorage ==> ', e);
+      }
+    })();
+  };
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const storageInfo = await AsyncStorage.getItem('INFO');
+        console.log('getItem', storageInfo);
+        setInfo(JSON.parse(storageInfo) || INITIAL_INFO);
+      } catch (e) {
+        console.log('AsyncStorage ==> ', e);
+      }
+    })();
+  }, []);
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Index"
-        screenOptions={{
-          headerShown: false,
-          headerTitle: props => <TitleBar {...props} />,
-          headerStyle: {
-            backgroundColor: '#f89308',
-            display: 'none',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}>
-        <Stack.Screen name="Index" component={IndexPage} />
-        <Stack.Screen
-          name="YKM"
-          component={YKMScreen}
-          options={{title: 'Overview'}}
-        />
-        <Stack.Screen name="CSM" component={CSMScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Context.Provider value={{info, updateInfo}}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Index"
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: false,
+          }}>
+          <Stack.Screen name="Index" component={IndexPage} />
+          <Stack.Screen name="Info" component={InfoPage} />
+          <Stack.Screen name="YKM" component={YKMScreen} />
+          <Stack.Screen name="CSM" component={CSMScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Context.Provider>
   );
 };
 

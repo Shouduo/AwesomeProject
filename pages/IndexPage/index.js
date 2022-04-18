@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -72,7 +71,7 @@ const IndexPage = ({navigation}) => {
           <Section title="Debug">
             <DebugInstructions />
           </Section>
-          <Section title="Release">
+          <Section title="Release" onPress={() => navigation.navigate('Info')}>
             Release a build with decent performance and code size.
           </Section>
           <Section

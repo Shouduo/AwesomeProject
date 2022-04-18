@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Button, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {ThreeDots, Ripple, Home} from '../../assets/svg/index';
 
 const WindowButtons = ({showHome = false, onClose, ...rest}) => {
@@ -10,7 +10,7 @@ const WindowButtons = ({showHome = false, onClose, ...rest}) => {
           <ThreeDots color="white" />
         </TouchableOpacity>
         <View style={styles.verticalDivider} />
-        <TouchableOpacity style={styles.headerButton} onPress={onClose}>
+        <TouchableOpacity style={styles.headerButton} onLongPress={onClose}>
           <Ripple color="white" />
         </TouchableOpacity>
       </View>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, ImageBackground, View} from 'react-native';
 
-const ExtraService = () => {
+const YKMExtraService = () => {
   return (
     <View style={styles.extraContainer}>
       <ImageBackground
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExtraService;
+export default YKMExtraService;

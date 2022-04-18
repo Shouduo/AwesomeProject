@@ -10,12 +10,16 @@ import {
 } from 'react-native';
 
 import {LeftArrow} from '../../assets/svg/index';
-import {timeFormatter} from '../../utils/public';
+import {timeFormatter, QRCODE_TEMPLATE} from '../../utils/public';
 import QRCode from 'react-native-qrcode-svg';
 import {a as qrcodeData} from '../../utils/test';
+import infoLog from 'react-native/Libraries/Utilities/infoLog';
+import {Context} from '../../App';
 
 const nowTime = Date.now();
-const Jumbotron = () => {
+
+const YKMJumbotron = () => {
+  const {info} = React.useContext(Context);
   const [realTime, setRealTime] = React.useState(nowTime);
   const waveAnim = React.useRef(new Animated.Value(0)).current;
   const timer = React.useRef(null);
@@ -88,7 +92,7 @@ const Jumbotron = () => {
               </View>
               <View style={styles.selectionButton}>
                 <Text style={{textAlign: 'center', ...styles.buttonText}}>
-                  刘*俊
+                  {info.name}
                 </Text>
               </View>
               <View style={styles.selectionButton}>
@@ -111,7 +115,10 @@ const Jumbotron = () => {
               <View style={styles.qrcode}>
                 <QRCode
                   value={JSON.stringify({
-                    ...qrcodeData,
+                    ...QRCODE_TEMPLATE,
+                    cid: info.cid,
+                    name: info.name,
+                    phone: info.phone,
                     t: Math.floor(nowTime / 1000),
                   })}
                   size={180}
@@ -131,7 +138,7 @@ const Jumbotron = () => {
               resizeMode="cover"
             />
             <Text style={styles.testTime}>
-              {timeFormatter(nowTime - 36 * 60 * 60 * 1000, 'yyyy-MM-dd HH:mm')}
+              {timeFormatter(nowTime - 36.192 * 3600000, 'yyyy-MM-dd HH:mm')}
             </Text>
           </View>
           <View style={styles.sectionContent}>
@@ -239,7 +246,7 @@ const styles = StyleSheet.create({
   testTime: {
     position: 'absolute',
     width: '100%',
-    backgroundColor: '#8361d4',
+    // backgroundColor: '#8361d4',
     color: '#ffffff',
     textAlign: 'center',
     fontSize: 12,
@@ -260,4 +267,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Jumbotron;
+export default YKMJumbotron;
