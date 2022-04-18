@@ -1,26 +1,19 @@
 import React from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  Button,
-  useColorScheme,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, TextInput, useColorScheme, View} from 'react-native';
 
 const InputField = ({fieldKey, title, value, onChangeText, ...rest}) => {
-  // const [value, setValue] = React.useState(defaultValue);
+  const isDarkMode = useColorScheme() === 'dark';
+
   return (
     <View style={styles.inputFieldContainer}>
       <Text style={styles.titleText}>*{title}</Text>
       <TextInput
-        // defaultValue={defaultValue}
         value={value}
         onChangeText={onChangeText}
-        style={styles.textInput}
+        style={{
+          ...styles.textInput,
+          color: isDarkMode ? 'rgba(256, 256, 256, 0.8)' : 'rgba(0, 0, 0, 1)',
+        }}
         {...rest}
       />
     </View>

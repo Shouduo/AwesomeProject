@@ -11,18 +11,25 @@ import {
   Platform,
   Alert,
 } from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import WindowButtons from '../../components/WindowButtons';
 import InputField from '../../components/InputField';
 import {Context} from '../../App';
 import {INITIAL_INFO, stringMasker} from '../../utils/public';
 
 const InfoPage = ({navigation}) => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
   const {info, updateInfo} = React.useContext(Context);
   const [tempInfo, setTempInfo] = React.useState(info);
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <StatusBar barStyle="light-content" />
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <WindowButtons onClose={() => navigation.navigate('Index')} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -93,16 +100,17 @@ const InfoPage = ({navigation}) => {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={{
-                ...styles.confirmButton,
+                ...styles.bottomButton,
                 borderWidth: 1,
                 borderColor: 'rgba(128, 128, 128, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
               }}
               onPress={() => setTempInfo(INITIAL_INFO)}>
               <Text style={styles.buttonText}>Reset</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
-                ...styles.confirmButton,
+                ...styles.bottomButton,
                 backgroundColor: 'rgba(0, 128, 256, 0.8)',
               }}
               onPress={() => {
@@ -155,7 +163,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
     height: 48,
   },
-  confirmButton: {
+  bottomButton: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
