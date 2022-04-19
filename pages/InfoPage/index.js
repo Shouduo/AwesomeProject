@@ -80,6 +80,12 @@ const InfoPage = ({navigation}) => {
             }
           />
           <InputField
+            fieldKey="city"
+            title="City"
+            value={tempInfo.city}
+            onChangeText={text => setTempInfo({...tempInfo, city: text})}
+          />
+          <InputField
             fieldKey="placeName"
             title="Place Name"
             value={tempInfo.placeName}

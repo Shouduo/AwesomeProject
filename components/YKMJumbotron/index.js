@@ -9,12 +9,11 @@ import {
   Easing,
 } from 'react-native';
 
-import {LeftArrow} from '../../assets/svg/index';
+import {LeftArrow, DownArrow} from '../../assets/svg/index';
 import {timeFormatter, QRCODE_TEMPLATE} from '../../utils/public';
 import QRCode from 'react-native-qrcode-svg';
-import {a as qrcodeData} from '../../utils/test';
-import infoLog from 'react-native/Libraries/Utilities/infoLog';
 import {Context} from '../../App';
+import TestResult from '../TestResult';
 
 const nowTime = Date.now();
 
@@ -84,21 +83,26 @@ const YKMJumbotron = () => {
               <View style={styles.selectionButton}>
                 <Text
                   style={{
-                    display: 'none',
                     ...styles.buttonText,
                   }}>
-                  深圳 &#8964;
+                  {info.city}
                 </Text>
+                <DownArrow color="black" style={{marginLeft: 4}} />
               </View>
               <View style={styles.selectionButton}>
-                <Text style={{textAlign: 'center', ...styles.buttonText}}>
+                <Text
+                  style={{
+                    width: '100%',
+                    textAlign: 'center',
+                    ...styles.buttonText,
+                  }}>
                   {info.name}
                 </Text>
               </View>
               <View style={styles.selectionButton}>
                 <Text
                   style={{
-                    display: 'none',
+                    width: '100%',
                     textAlign: 'right',
                     color: '#4a92f4',
                     ...styles.buttonText,
@@ -140,6 +144,7 @@ const YKMJumbotron = () => {
             <Text style={styles.testTime}>
               {timeFormatter(nowTime - 36.192 * 3600000, 'yyyy-MM-dd HH:mm')}
             </Text>
+            {/* <TestResult /> */}
           </View>
           <View style={styles.sectionContent}>
             <Image
@@ -208,6 +213,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   selectionButton: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     width: '25%',
   },
   buttonText: {
@@ -239,6 +248,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   sectionContent: {
+    // height: 116,
+    // width: '48%',
     padding: 3,
     borderRadius: 4,
     backgroundColor: '#ffffff',

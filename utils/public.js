@@ -69,6 +69,7 @@ export const INITIAL_INFO = {
   cid: '220************609',
   name: '马*梅',
   phone: '189******64',
+  city: '深圳',
   placeName: '米奇妙妙屋♂',
   placeId: '12***678',
 };
