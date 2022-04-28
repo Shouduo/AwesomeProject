@@ -14,6 +14,7 @@ import {timeFormatter, QRCODE_TEMPLATE} from '../../utils/public';
 import QRCode from 'react-native-qrcode-svg';
 import {Context} from '../../App';
 import TestResult from '../TestResult';
+import {Trumpet} from '../../assets/svg/index';
 
 const nowTime = Date.now();
 
@@ -89,25 +90,54 @@ const YKMJumbotron = () => {
                 </Text>
                 <DownArrow color="black" style={{marginLeft: 4}} />
               </View>
-              <View style={styles.selectionButton}>
+              <View
+                style={{
+                  ...styles.selectionButton,
+                  backgroundColor: '#ECF3FE',
+                  width: 'auto',
+                  borderRadius: 4,
+                  paddingHorizontal: 8,
+                }}>
                 <Text
                   style={{
-                    width: '100%',
-                    textAlign: 'center',
                     ...styles.buttonText,
+                    // width: '100%',
+                    padding: 6,
+                    textAlign: 'center',
                   }}>
                   {info.name}
                 </Text>
-              </View>
-              <View style={styles.selectionButton}>
+                <View
+                  style={{
+                    width: 1,
+                    height: 18,
+                    backgroundColor: '#cfddf7',
+                  }}
+                />
                 <Text
                   style={{
-                    width: '100%',
-                    textAlign: 'right',
-                    color: '#4a92f4',
                     ...styles.buttonText,
+                    color: '#4E86F7',
+                    padding: 6,
+                    borderLeftWidth: 4,
+                    // width: '100%',
+                    textAlign: 'center',
                   }}>
-                  成员管理
+                  管理
+                </Text>
+              </View>
+              <View
+                style={{...styles.selectionButton, justifyContent: 'flex-end'}}>
+                <Trumpet />
+                <Text
+                  style={{
+                    ...styles.buttonText,
+                    padding: 2,
+                    // width: '100%',
+                    textAlign: 'right',
+                    color: '#4E86F7',
+                  }}>
+                  播报
                 </Text>
               </View>
             </View>
