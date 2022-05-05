@@ -33,7 +33,6 @@ const App = () => {
     (async () => {
       try {
         const storageInfo = await AsyncStorage.getItem('INFO');
-        console.log('getItem', storageInfo);
         setInfo(JSON.parse(storageInfo) || INITIAL_INFO);
       } catch (e) {
         console.log('AsyncStorage ==> ', e);

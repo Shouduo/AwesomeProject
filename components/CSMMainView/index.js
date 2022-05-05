@@ -4,6 +4,7 @@ import {timeFormatter, QRCODE_TEMPLATE} from '../../utils/public';
 import QRCode from 'react-native-qrcode-svg';
 import {a as qrcodeData} from '../../utils/test';
 import {Context} from '../../App';
+import {Trumpet} from '../../assets/svg/index';
 
 const nowTime = Date.now();
 
@@ -61,6 +62,14 @@ const CSMMainView = () => {
               {timeFormatter(nowTime - 16.2547 * 3600000, 'yyyy-MM-dd HH:mm')}
             </Text>
           </ImageBackground>
+        </View>
+      </View>
+      {/* 播报 */}
+      <View style={styles.broadcast}>
+        <Trumpet />
+        <View style={{marginTop: 8}}>
+          <Text style={styles.broadcastText}>播</Text>
+          <Text style={styles.broadcastText}>报</Text>
         </View>
       </View>
     </ImageBackground>
@@ -121,6 +130,27 @@ const styles = StyleSheet.create({
     width: 295,
     borderRadius: 4,
     overflow: 'hidden',
+  },
+  broadcast: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    // borderRadius: 4,
+    borderTopRightRadius: 2,
+    borderBottomRightRadius: 2,
+    top: 320,
+    left: 25,
+    backgroundColor: '#edf3fe',
+  },
+  broadcastText: {
+    marginTop: 2,
+    color: '#4E86F7',
+    fontSize: 14,
+    fontWeight: '600',
   },
   sectionContent: {
     // padding: 12,

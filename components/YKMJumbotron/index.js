@@ -9,12 +9,11 @@ import {
   Easing,
 } from 'react-native';
 
-import {LeftArrow, DownArrow} from '../../assets/svg/index';
+import {LeftArrow, DownArrow, Trumpet} from '../../assets/svg/index';
 import {timeFormatter, QRCODE_TEMPLATE} from '../../utils/public';
 import QRCode from 'react-native-qrcode-svg';
 import {Context} from '../../App';
 import TestResult from '../TestResult';
-import {Trumpet} from '../../assets/svg/index';
 
 const nowTime = Date.now();
 
