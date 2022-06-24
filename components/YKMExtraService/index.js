@@ -15,7 +15,10 @@ const YKMExtraService = () => {
 
 const styles = StyleSheet.create({
   extraContainer: {
-    height: 1000,
+    backgroundColor: '#ECF0FB',
+    marginTop: 12,
+    paddingHorizontal: 20,
+    height: 280,
   },
 });
 

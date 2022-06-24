@@ -13,7 +13,8 @@ import {LeftArrow, DownArrow, Trumpet} from '../../assets/svg/index';
 import {timeFormatter, QRCODE_TEMPLATE} from '../../utils/public';
 import QRCode from 'react-native-qrcode-svg';
 import {Context} from '../../App';
-import TestResult from '../TestResult';
+// import TestResult from '../TestResult';
+import LinearGradient from 'react-native-linear-gradient';
 
 const nowTime = Date.now();
 
@@ -44,7 +45,11 @@ const YKMJumbotron = () => {
   }, []);
 
   return (
-    <View style={styles.backgroundContainer}>
+    <LinearGradient
+      colors={['#5791ED', '#ECF0FB']}
+      start={{x: 0, y: 0.55}}
+      end={{x: 0, y: 0.85}}
+      style={styles.backgroundContainer}>
       {/* 背景波纹 */}
       <Animated.View
         style={{
@@ -163,42 +168,45 @@ const YKMJumbotron = () => {
           </ImageBackground>
         </View>
         {/* 核酸检测 新冠疫苗 */}
-        <View style={styles.leftRightContainer}>
-          <View style={styles.sectionContent}>
-            <Image
-              source={require('../../assets/img/48_hours_negtive.png')}
-              style={{aspectRatio: 156 / 111, height: 109}}
-              resizeMode="cover"
-            />
-            <Text style={styles.testTime}>
-              {timeFormatter(nowTime - 36.192 * 3600000, 'yyyy-MM-dd HH:mm')}
-            </Text>
-            {/* <TestResult /> */}
-          </View>
-          <View style={styles.sectionContent}>
-            <Image
-              source={require('../../assets/img/vaccine_injected.png')}
-              style={{aspectRatio: 156 / 111, height: 109}}
-              resizeMode="cover"
-            />
+        <View style={styles.leftRightOuter}>
+          <View style={styles.leftRightContainer}>
+            <View style={styles.sectionContent}>
+              <Image
+                source={require('../../assets/img/48_hours_negtive.png')}
+                style={{aspectRatio: 156 / 111, height: 116}}
+                resizeMode="cover"
+              />
+              <Text style={styles.testTime}>
+                {timeFormatter(nowTime - 36.192 * 3600000, 'yyyy-MM-dd HH:mm')}
+              </Text>
+              {/* <TestResult /> */}
+            </View>
+            <View style={styles.sectionContent}>
+              <Image
+                source={require('../../assets/img/vaccine_injected.png')}
+                style={{aspectRatio: 156 / 111, height: 116}}
+                resizeMode="cover"
+              />
+            </View>
           </View>
         </View>
         {/* 底部说明 */}
-        <View style={styles.bottomContainer}>
+        {/* <View style={styles.bottomContainer}>
           <Text style={styles.instructionText}>依托全国一体化政务服务平台</Text>
           <Text style={styles.instructionText}>
             实现跨省（区、市）数据共享和互通互认
           </Text>
-        </View>
+        </View> */}
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   backgroundContainer: {
     position: 'relative',
-    backgroundColor: '#5791ED',
+    // backgroundColor: '#5791ED',
+    // backgroundColor: '#FFFFFF',
     marginTop: -96,
     paddingTop: 96,
     overflow: 'hidden',
@@ -208,7 +216,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    paddingTop: 2,
+    paddingTop: 4,
+    // paddingBottom: 4,
     paddingHorizontal: 20,
   },
   headerContainer: {
@@ -217,7 +226,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
   },
   headerButton: {
     // position: 'relative',
@@ -231,14 +240,14 @@ const styles = StyleSheet.create({
   contentContainer: {
     borderRadius: 8,
     overflow: 'hidden',
-    marginBottom: 12,
+    marginBottom: 6,
   },
   contentSelection: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 46,
+    height: 68,
     paddingHorizontal: 24,
   },
   selectionButton: {
@@ -258,30 +267,40 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 12,
+    padding: 0,
   },
   realTime: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: '500',
     paddingHorizontal: 24,
   },
   qrcode: {
-    marginTop: 18,
+    marginTop: 21,
+  },
+  leftRightOuter: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    // marginBottom: 18,
+    padding: 2,
   },
   leftRightContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 18,
-    paddingHorizontal: 2,
+    backgroundColor: '#ffffff',
+    borderRadius: 6,
+    // marginBottom: 18,
+    // padding: 3,
+    overflow: 'hidden',
+    // paddingHorizontal: 2,
   },
   sectionContent: {
     // height: 116,
     // width: '48%',
-    padding: 3,
-    borderRadius: 4,
-    backgroundColor: '#ffffff',
+    // padding: 3,
+    // borderRadius: 4,
+    // backgroundColor: '#ffffff',
   },
   testTime: {
     position: 'absolute',
@@ -291,7 +310,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     left: 3,
-    bottom: 16,
+    bottom: 12,
   },
   bottomContainer: {
     display: 'flex',
