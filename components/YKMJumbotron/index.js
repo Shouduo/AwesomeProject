@@ -172,12 +172,12 @@ const YKMJumbotron = () => {
           <View style={styles.leftRightContainer}>
             <View style={styles.sectionContent}>
               <Image
-                source={require('../../assets/img/48_hours_negtive.png')}
+                source={require('../../assets/img/24_hours_negtive.png')}
                 style={{aspectRatio: 156 / 111, height: 116}}
                 resizeMode="cover"
               />
               <Text style={styles.testTime}>
-                {timeFormatter(nowTime - 36.192 * 3600000, 'yyyy-MM-dd HH:mm')}
+                {timeFormatter(nowTime - 16.192 * 3600000, 'yyyy-MM-dd HH:mm')}
               </Text>
               {/* <TestResult /> */}
             </View>
@@ -308,9 +308,9 @@ const styles = StyleSheet.create({
     // backgroundColor: '#8361d4',
     color: '#ffffff',
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: 11,
     left: 3,
-    bottom: 12,
+    bottom: 14,
   },
   bottomContainer: {
     display: 'flex',

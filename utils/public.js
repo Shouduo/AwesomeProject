@@ -71,7 +71,7 @@ export const INITIAL_INFO = {
   phone: '189******64',
   city: '深圳',
   placeName: '米奇妙妙屋♂',
-  placeId: '12***678',
+  placeId: '12**678',
 };
 
 //
